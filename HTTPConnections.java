@@ -11,10 +11,14 @@ public class HTTPConnections {
     private static final int BUFFER_SIZE = 4096;
 
     public static void main(String[] args) throws Exception {
+        System.out.println("Starting HTTP Connection");
         HTTPConnections http = new HTTPConnections();
+        System.out.println("Stopping Charles Recording");
         HTTPConnections.sendHTTPGetRequest("http://control.charles:/recording/stop", "8888");
+        System.out.println("Saving HAR File");
         String saveCharlesUrl = "http://control.charles:/session/export-har";
         HTTPConnections.downloadFile("har.har", saveCharlesUrl, "8888");
+        System.out.println("Finished");
     }
 
     /**
